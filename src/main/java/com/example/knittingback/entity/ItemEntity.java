@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -25,7 +26,7 @@ public class ItemEntity {
     //id category-name of the new field in DB
     private CategoryEntity id_category;
     @OneToMany(mappedBy = "item")
-    private List<Client_ItemEntity> collection;
+    private Set<OrderEntity> collection;
 
 
 

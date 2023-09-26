@@ -19,14 +19,12 @@ public class ServiceImpl implements Service {
     final private RepositoryEntity repositoryEntity;
     final private RepositoryOrder repositoryOrder;
     final private RepositoryClient repositoryClient;
-    final private RepositoryClient_Item repositoryClientItem;
 
-    public ServiceImpl(RepositoryCategory repositoryCategory, RepositoryEntity repositoryEntity, RepositoryOrder repositoryOrder, RepositoryClient repositoryClient, RepositoryClient_Item repositoryClientItem) {
+    public ServiceImpl(RepositoryCategory repositoryCategory, RepositoryEntity repositoryEntity, RepositoryOrder repositoryOrder, RepositoryClient repositoryClient) {
         this.repositoryCategory = repositoryCategory;
         this.repositoryEntity = repositoryEntity;
         this.repositoryOrder = repositoryOrder;
         this.repositoryClient = repositoryClient;
-        this.repositoryClientItem = repositoryClientItem;
     }
 
     //Конструктор класса ServiceImpl необходим, потому что он является единственным способом передать экземпляр класса Repository в класс ServiceImpl. Если вы не используете конструктор, вам нужно будет вручную внедрить экземпляр класса Repository в класс ServiceImpl. Это может быть утомительно и подвержено ошибкам.
@@ -76,15 +74,7 @@ public class ServiceImpl implements Service {
         return client;
     }
 
-    @Override
-    public Order showTableDB(Order order) {
-        OrderToOrderEntity orderEntity = new OrderToOrderEntity();
-        Client_ItemEntity clientItemEntity = new Client_ItemEntity().builder()
-                .order(orderEntity.convert(order))
-                .build();
-        repositoryClientItem.save(clientItemEntity);
-        return order;
-    }
+
 
     @Override
     public List<Category> getAllCategories() {

@@ -1,6 +1,5 @@
 package com.example.knittingback.controller;
 
-import com.example.knittingback.entity.Client_ItemEntity;
 import com.example.knittingback.model.Category;
 import com.example.knittingback.model.Client;
 import com.example.knittingback.model.Item;
@@ -9,7 +8,6 @@ import com.example.knittingback.services.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,11 +34,11 @@ public class Controller {
         return service.createCategory(category);
     }
 
-    @PostMapping("/client_items")
-
-    public  Order showTable(@RequestBody Order order) {
-        return service.showTableDB(order);
-    }
+//    @PostMapping("/client_items")
+//
+//    public  Order showTable(@RequestBody Order order) {
+//        return service.showTableDB(order);
+//    }
 
     @PostMapping("/items")
     public Item createCategory(@RequestBody Item item) {
