@@ -6,8 +6,10 @@ import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.List;
+
 //these data are used in postmen request !!
-@Getter @Setter
+@Getter
+@Setter
 //@Builder
 @NoArgsConstructor
 public class Category {

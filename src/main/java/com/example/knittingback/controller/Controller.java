@@ -34,11 +34,7 @@ public class Controller {
         return service.createCategory(category);
     }
 
-//    @PostMapping("/client_items")
-//
-//    public  Order showTable(@RequestBody Order order) {
-//        return service.showTableDB(order);
-//    }
+
 
     @PostMapping("/items")
     public Item createCategory(@RequestBody Item item) {
