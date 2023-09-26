@@ -23,8 +23,8 @@ public class CategoryEntity {
     private String name;
 
     //mapped by uses field :id_category from ItemEntity
-//    @OneToMany(mappedBy ="id_category")
-//    private List<ItemEntity> items;
+    @OneToMany(mappedBy ="id_category")
+    private List<ItemEntity> items;
 
 
 }

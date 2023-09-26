@@ -1,11 +1,16 @@
 package com.example.knittingback.controller;
 
+import com.example.knittingback.entity.Client_ItemEntity;
 import com.example.knittingback.model.Category;
+import com.example.knittingback.model.Client;
 import com.example.knittingback.model.Item;
+import com.example.knittingback.model.Order;
 import com.example.knittingback.services.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -26,19 +31,29 @@ public class Controller {
     //The public Controller(Service service) constructor injects the Service dependency into the Controller class.
     @PostMapping("/categories")
     //The @PostMapping("/categories") annotation specifies that the createCategory() method will handle HTTP POST requests to the /categories URL.
-
     //The public Category createCategory(@RequestBody Category category) method creates a new category and returns it. The @RequestBody annotation tells Spring Boot to bind the JSON data in the request body to the category parameter.
     public Category createCategory(@RequestBody Category category) {
         return service.createCategory(category);
     }
 
+    @PostMapping("/client_items")
 
+    public  Order showTable(@RequestBody Order order) {
+        return service.showTableDB(order);
+    }
 
     @PostMapping("/items")
     public Item createCategory(@RequestBody Item item) {
-//        int id_Category= (int) item.getId_category().getId();
-//        Item forCreation=new Item(item.getId(), item.getName(), item.getImage(),  item.getDescription(), )
         return service.createItem(item);
+    }
+    @PostMapping("/order")
+    public Order createOrder() {
+        Order order=new Order().builder().date(LocalDateTime.now()).build();
+        return service.createOrder(order);
+    }
+    @PostMapping("/client")
+    public Client createClient(@RequestBody Client client) {
+        return service.createClient(client);
     }
 
     @GetMapping("/categories")

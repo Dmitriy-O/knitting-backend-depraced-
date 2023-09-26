@@ -1,13 +1,13 @@
 package com.example.knittingback.services;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.example.knittingback.converter.CategoryToCategoryEntity;
-import com.example.knittingback.entity.CategoryEntity;
-import com.example.knittingback.entity.ItemEntity;
+import com.example.knittingback.converter.OrderToOrderEntity;
+import com.example.knittingback.entity.*;
 import com.example.knittingback.model.Category;
+import com.example.knittingback.model.Client;
 import com.example.knittingback.model.Item;
-import com.example.knittingback.repository.RepositoryCategory;
-import com.example.knittingback.repository.RepositoryEntity;
+import com.example.knittingback.model.Order;
+import com.example.knittingback.repository.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -15,13 +15,18 @@ import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class ServiceImpl implements Service {
-    private RepositoryCategory repositoryCategory;
+    final private RepositoryCategory repositoryCategory;
+    final private RepositoryEntity repositoryEntity;
+    final private RepositoryOrder repositoryOrder;
+    final private RepositoryClient repositoryClient;
+    final private RepositoryClient_Item repositoryClientItem;
 
-    private RepositoryEntity repositoryEntity;
-
-    public ServiceImpl(RepositoryCategory repositoryCategory, RepositoryEntity repositoryEntity) {
+    public ServiceImpl(RepositoryCategory repositoryCategory, RepositoryEntity repositoryEntity, RepositoryOrder repositoryOrder, RepositoryClient repositoryClient, RepositoryClient_Item repositoryClientItem) {
         this.repositoryCategory = repositoryCategory;
         this.repositoryEntity = repositoryEntity;
+        this.repositoryOrder = repositoryOrder;
+        this.repositoryClient = repositoryClient;
+        this.repositoryClientItem = repositoryClientItem;
     }
 
     //Конструктор класса ServiceImpl необходим, потому что он является единственным способом передать экземпляр класса Repository в класс ServiceImpl. Если вы не используете конструктор, вам нужно будет вручную внедрить экземпляр класса Repository в класс ServiceImpl. Это может быть утомительно и подвержено ошибкам.
@@ -48,14 +53,37 @@ public class ServiceImpl implements Service {
                 .description(item.getDescription())
                 .id_category(converter.convert(item.getId_category()))
                 .build();
-//        BeanUtils.copyProperties(item,itemEntity);
-//        itemEntity.setId(item.getId());
-//        itemEntity.setName(item.getName());
-//        itemEntity.setImage(item.getImage());
-//        itemEntity.setDescription(item.getDescription());
-//        I
         repositoryEntity.save(itemEntity);
         return item;
+    }
+
+    @Override
+    public Order createOrder(Order order) {
+        OrderEntity orderEntity = OrderEntity.builder()
+                .id(order.getId())
+                .date(order.getDate()).build();
+        repositoryOrder.save(orderEntity);
+        return order;
+    }
+
+    @Override
+    public Client createClient(Client client) {
+
+        ClientEntity clientEntity = new ClientEntity().builder()
+                .name(client.getName())
+                .build();
+        repositoryClient.save(clientEntity);
+        return client;
+    }
+
+    @Override
+    public Order showTableDB(Order order) {
+        OrderToOrderEntity orderEntity = new OrderToOrderEntity();
+        Client_ItemEntity clientItemEntity = new Client_ItemEntity().builder()
+                .order(orderEntity.convert(order))
+                .build();
+        repositoryClientItem.save(clientItemEntity);
+        return order;
     }
 
     @Override
@@ -73,6 +101,7 @@ public class ServiceImpl implements Service {
         //Список Category содержит объекты класса Category, которые представляют представления этих записей.
         return categories;
     }
+
 
     @Override
     public Optional<CategoryEntity> getCategoryEntityByID(long categoryID) {
