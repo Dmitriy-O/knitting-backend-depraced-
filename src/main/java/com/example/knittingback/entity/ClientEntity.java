@@ -19,5 +19,5 @@ public class ClientEntity {
     String name;
     String email;
     @OneToMany(mappedBy = "client")
-    Set<Client_ItemEntity> container;
+    Set<OrderEntity> container;
 }

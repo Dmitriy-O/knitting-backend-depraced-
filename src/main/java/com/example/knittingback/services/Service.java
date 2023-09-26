@@ -15,7 +15,6 @@ public interface Service {
     Item createItem(Item item);
     Order createOrder(Order order);
     Client createClient(Client client);
-    Order showTableDB(Order clientItemEntity);
     Optional<CategoryEntity> getCategoryEntityByID(long categoryID);
 
     List<Category> getAllCategories();

@@ -20,7 +20,13 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime date;
-    @OneToMany(mappedBy = "order")
-    private Set<Client_ItemEntity> collection;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private ItemEntity item;
+
+//    private Set<Client_ItemEntity> collection;
 
 }
