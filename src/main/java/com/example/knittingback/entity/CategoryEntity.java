@@ -33,11 +33,12 @@ public class CategoryEntity {
 //    The GenerationType.IDENTITY strategy means that the database will automatically increment the value of the primary key each time a new record is inserted.
     private long id;
     private int number;
+    @Column(length=1000)
     private String image;
     private String name;
 
     //mapped by uses field :id_category from ItemEntity
-    @OneToMany(mappedBy ="id_category")
+    @OneToMany(mappedBy ="id_category",cascade = CascadeType.ALL )
     private List<ItemEntity> items;
 
 

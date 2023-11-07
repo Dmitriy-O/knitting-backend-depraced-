@@ -1,8 +1,8 @@
 package com.example.knittingback.model;
 
-import com.example.knittingback.entity.CategoryEntity;
-import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -16,4 +16,6 @@ public class Item {
     private String image;
     private String description;
     private Category id_category;
+    private BigDecimal price;
+
 }

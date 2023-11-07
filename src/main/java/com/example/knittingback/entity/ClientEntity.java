@@ -18,6 +18,6 @@ public class ClientEntity {
     long id;
     String name;
     String email;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.ALL)
     Set<OrderEntity> container;
 }

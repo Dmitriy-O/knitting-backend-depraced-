@@ -1,11 +1,10 @@
 package com.example.knittingback.services;
 
 import com.example.knittingback.entity.CategoryEntity;
-import com.example.knittingback.model.Category;
-import com.example.knittingback.model.Client;
-import com.example.knittingback.model.Item;
-import com.example.knittingback.model.Order;
+import com.example.knittingback.model.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +16,10 @@ public interface Service {
     Client createClient(Client client);
     Optional<CategoryEntity> getCategoryEntityByID(long categoryID);
 
-    List<Category> getAllCategories();
 
+    String uploadImageService(MultipartFile image) throws IOException;
+    ImageM downloadImageService(long id) throws IOException;
+
+    List<Category> getAllCategories();
+    List<ImageM> getAllImages();
 }
