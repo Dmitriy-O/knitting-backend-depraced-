@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
+
 @JsonIgnoreProperties(value = {"Fieldhandler","hibernateLazyInitializer", "handler"})
 
 @Entity
-@Table(name = "imagePath")
+@Table(name = "imagePathes")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -23,6 +26,9 @@ public class FileEntity {
     private String type;
 
 //    @Lob
-    @Column(length=1000)
+//    @Column(length=1000)
     private String filePath;
+                                                                                    //which entity gives the column - "mapped by" property and the arg is field of desirable connections opponent with @OneToOnne or @OneToMany
+    @OneToOne(mappedBy = "image_ID")
+    private ItemEntity itemEntity;
 }

@@ -1,10 +1,8 @@
 package com.example.knittingback.entity;
 
-import com.example.knittingback.model.Item;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 /**
  * Модель и сущность - это два важных понятия в объектно-ориентированном программировании. Они часто используются в контексте базы данных.
  * <p>
@@ -38,8 +36,8 @@ public class CategoryEntity {
     private String name;
 
     //mapped by uses field :id_category from ItemEntity
-    @OneToMany(mappedBy ="id_category",cascade = CascadeType.ALL )
-    private List<ItemEntity> items;
+//    @OneToMany(mappedBy ="id_category",cascade = CascadeType.ALL )
+//    private List<ItemEntity> items;
 
 
 }

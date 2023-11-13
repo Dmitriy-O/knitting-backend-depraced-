@@ -1,8 +1,5 @@
 package com.example.knittingback.model;
 
-import com.example.knittingback.entity.ItemEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.List;
@@ -17,7 +14,7 @@ public class Category {
     private int number;
     private String image;
     private String name;
-    private List<Item> items;
+    private List<ItemEntity> itemEntities;
 
     public Category(long id, int number, String image, String name) {
         this.id = id;

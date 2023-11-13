@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Item {
+public class ItemEntity {
     private long id;
     private String name;
-    private String image;
+    private String imagePath;
     private String description;
-    private Category id_category;
     private BigDecimal price;
 
+//    private Category id_category;
 }

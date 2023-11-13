@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -21,19 +18,23 @@ public class ItemEntity {
     private long id;
     private String name;
     @Column(length=1000)
-    private String image;
+//    private String imagePath;
     private String description;
-    @Column(precision = 13, scale = 4)
+    @Column(precision = 13, scale = 2)
 
     private BigDecimal price;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_category")
     //id category-name of the new field in DB
-    private CategoryEntity id_category;
-    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
-    private Set<OrderEntity> collection;
+//    @ManyToOne
+//    @JoinColumn(name = "id_category")
+//    private CategoryEntity id_category;
+//    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
+//    private Set<OrderEntity> collection;
+//@Column(length = 1000)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private FileEntity image_ID;
 
 
 
